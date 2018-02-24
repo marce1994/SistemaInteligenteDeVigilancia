@@ -5,12 +5,12 @@ Debido a la cantidad de robos y asesinatos, me surge la necesidad de encontrar u
 
 La idea del proyecto es crear una red de sistemas interconectados con reconocimiento facial, para detectar posibles delincuentes previamente añadidos a la base de datos.
 
-Requisitos del sistema:
+## Requisitos del sistema:
 - Conexion a internet(solo para actualizar la base de datos local y avisar a la policia, en el caso de no contar con el mismo, el sistema sigue siendo capaz de verificar la peligrosidad o no de una persona y avisar al proprietario).
 - Raspberry pi zero, camara, wifi y una fuente de poder(un cargador de celular funciona perfecto). costo aprox de AR$2000
 - Una pc con un procesador mas o menos potente para realizar el procesamiento de las imagenes(Posible utilizacion de nvidia cuda para el procesamiento) AR$10000-20000. Aunque es posible que se pueda distribuir el procesamiento entre la red y omitir tener una pc potente para ello -> lo que si, es necesaria la pc para sincronizar la base de datos y subir la imagen(al subir la imagen, se suscribe al objeto en espera de una confirmacion por parte de los demás equipos de la red).
 
-El sistema consiste de:
+## El sistema consiste de:
 
 - Una raspberry pi zero, equipada con una camara, se encarga de conseguir la mejor toma de un rostro de una persona, mediante opencv y algunos filtros.
 - La raspberry pi, manda a un servidor intermedio la imagen preprocesada(red local).
