@@ -26,9 +26,9 @@ RUN npm i raspberry-pi-camera-native --unsafe-perm
 RUN npm i jpeg-js node-raspistill
 RUN npm i opencv4nodejs
 
-RUN npm i locks
+RUN apt-get install pigpio
 
-RUN npm i pi-camera-connect
+RUN npm i pi-camera-connect pigpio
 
 COPY app.js app.js
 
