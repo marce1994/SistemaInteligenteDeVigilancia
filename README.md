@@ -5,7 +5,7 @@ La idea del proyecto es crear una red de sistemas interconectados con reconocimi
 ## Requisitos del sistema:
 
 - Conexion a internet.
-- Raspberry pi 3 model b+, camara raspberry, wifi y un carcador de celular $3500 aprox/max.
+- Raspberry pi 3 model b+, camara raspberry, wifi y un carcador de celular.
 
 ## El sistema consiste de:
 
