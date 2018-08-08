@@ -21,7 +21,7 @@ RUN apt-get install -y build-essential \
 RUN apt-get install libraspberrypi-dev raspberrypi-kernel-headers -y
 RUN usermod -a -G video root
 
-RUN npm i face-recognition
+#RUN npm i face-recognition
 RUN npm i raspberry-pi-camera-native --unsafe-perm
 RUN npm i jpeg-js node-raspistill
 RUN npm i opencv4nodejs
