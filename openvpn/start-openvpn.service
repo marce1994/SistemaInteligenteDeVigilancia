@@ -1,0 +1,4 @@
+[Service]
+ExecStart=/home/pi/ovpn/start_vpn.sh
+[Install]
+WantedBy=network.target
