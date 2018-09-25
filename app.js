@@ -8,11 +8,23 @@ var config = {
     height: 640
 }
 
+//GPIO test.......
 const Gpio = require('pigpio').Gpio;
- 
-const led = new Gpio(14, {mode: Gpio.OUTPUT});
 
-led.pwmWrite(0);
+const pirSensor = new Gpio(18, {
+    mode: Gpio.INPUT,
+    alert: true
+});
+
+const watchPIR = () => {
+    let startTick;
+    pirSensor.on('alert', (level, tick) => {
+        console.log(level, tick);
+    });
+};
+
+watchPIR();
+//------------------
 
 const streamCamera = new StreamCamera({
     codec: Codec.H264,
