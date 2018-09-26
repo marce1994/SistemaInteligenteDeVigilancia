@@ -1,11 +1,18 @@
 const { StreamCamera, Codec } = require("pi-camera-connect");
 const fs = require("fs");
 const cv = require('opencv4nodejs');
+const request = require('request');
 
 var config = {
-    fps: 10,
-    width: 480,
-    height: 640
+    camera: {
+        fps: 10,
+        width: 480,
+        height: 640
+    },
+    server: {
+        address: '192.168.255.10',
+        port: 45455
+    }
 }
 
 //GPIO test.......
@@ -16,10 +23,31 @@ const pirSensor = new Gpio(18, {
     alert: true
 });
 
+function postToServer(endpoint, object){
+    console.log('http://'+config.server.address+':'+config.server.port+'/api/'+endpoint);
+    request.post(
+        'http://'+config.server.address+':'+config.server.port+'/api/'+endpoint,
+        { json: true, body: object},
+        function (error, response, body) {
+            console.log();
+            if (!error && response.statusCode == 200) {
+                console.log('OK')
+            }else{
+                console.log('ERROR', response.statusCode)
+            }
+        }
+    );
+}
+
 const watchPIR = () => {
     let startTick;
     pirSensor.on('alert', (level, tick) => {
-        console.log(level, tick);
+        if(level == 1){
+            console.log('PIR on')
+            postToServer("MovementDetection", {"timestamp":Date.now(), "info":"PIR Sensor Activated."});
+        }else{
+            console.log('PIR off')
+        }
     });
 };
 
@@ -47,7 +75,7 @@ let processing = false;
 const classifier = new cv.CascadeClassifier(cv.HAAR_FRONTALFACE_ALT2);//haarcascade_frontalcatface.xml
 
 videoStream.on("data",function(data){
-    if(!processing){
+    /*if(!processing){
         processing = true;
         console.log('procesando imagen'+Date.now());
         const matFromArray = new cv.Mat(Buffer.from(data), config.height, config.width, cv.CV_8UC3);
@@ -58,7 +86,7 @@ videoStream.on("data",function(data){
                 processing = false;
             }, 100);
         });
-    }
+    }*/
 });
 
 videoStream.on("end", function(data){

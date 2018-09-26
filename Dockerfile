@@ -30,6 +30,8 @@ RUN apt-get install pigpio
 
 RUN npm i pi-camera-connect pigpio
 
+RUN npm i request
+
 COPY app.js app.js
 
 ENTRYPOINT [ "node", "app.js" ]
