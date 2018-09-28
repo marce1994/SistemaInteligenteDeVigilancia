@@ -28,9 +28,19 @@ RUN npm i opencv4nodejs
 
 RUN apt-get install pigpio
 
-RUN npm i pi-camera-connect pigpio
+RUN npm i pi-camera-connect pigpio request shelljs
 
-RUN npm i request
+RUN apt-get install -y autoconf libtool g++ libcrypto++-dev libz-dev libsqlite3-dev libssl-dev libcurl4-openssl-dev libreadline-dev libpcre++-dev libsodium-dev libc-ares-dev libfreeimage-dev libavcodec-dev libavutil-dev libavformat-dev libswscale-dev libmediainfo-dev libzen-dev apt-transport-https
+
+RUN wget https://mega.nz/linux/MEGAsync/Raspbian_8.0/arm/megacmd-Raspbian_8.0_armhf.deb
+
+RUN dpkg -i megacmd-Raspbian_8.0_armhf.deb
+
+RUN mkdir security-videos
+
+RUN npm i rotating-file-stream raspivid
+
+COPY appconfigs.json appconfigs.json
 
 COPY app.js app.js
 

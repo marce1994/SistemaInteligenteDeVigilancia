@@ -1,0 +1,23 @@
+{
+    "camera": {
+        "fps": 10,
+        "width": 480,
+        "height": 640
+    },
+    "mega":{
+        "megaLogin": "mega-login mail pass",
+        "megaLogout": "mega-logout",
+        "megaSync": "mega-sync /security-videos security-videos/",
+        "showSync": "mega-sync"
+    },
+    "server": {
+        "address": "192.168.255.10",
+        "port": 45455
+    },
+    "commands":{
+        "getIp":"ip route get 1 | awk '{print $NF;exit}'"
+    },
+    "endpoints":{
+
+    }
+}
